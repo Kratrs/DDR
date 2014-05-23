@@ -1,2 +1,4 @@
-This is a stable commit.
-IF YOU ARE READING THIS YOU ARE ALTERING THE MASTER BRANCH!!! CHANGE IT TO DEVELOPMENT NOW! OR DIE!
+This is the Development Branch.
+Change log:
+Sprite Class, TimeKeeper Class.
+There is now time keeping of the game and there is also now animation for the sprites. The sprites will flip horizontally depending on the direction faced.
