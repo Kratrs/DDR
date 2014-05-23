@@ -1,6 +1,7 @@
 package com.game.system;
 
 import com.game.graphics.Screen;
+import com.game.graphics.Sprite;
 import com.game.objects.Flappy;
 import com.game.objects.Floor;
 import com.game.objects.RunnableObject;
@@ -15,11 +16,11 @@ public class Game implements Runnable{
     long lastUpdateTime;
     long deltaLoop;
     
-	private Boolean running = true;
+	public static Boolean running = true;
 	
 	Screen screen = new Screen(800,500);
 	Controls controls = new Controls();
-	Flappy flappy = new Flappy();
+	Flappy flappy = new Flappy(Sprite.player);
 	Floor floor = new Floor();
 	
 	public void run() {
@@ -27,13 +28,14 @@ public class Game implements Runnable{
 	    currentUpdateTime = System.nanoTime();
 	    
 		while(running){
-			//System.out.println(CollisionDetection.collidables);
+			//System.out.println(TimeKeeper.systemTime + "   " + TimeKeeper.currentTime);
 			beginLoopTime = System.nanoTime();
 			RunnableObject.emptyQueue();
 			lastUpdateTime = currentUpdateTime;
 			currentUpdateTime = System.nanoTime();
 			controls.update();
 			RunnableObject.updateObjects();
+			TimeKeeper.updateTime();
 			screen.render();
 			endLoopTime = System.nanoTime();
 			

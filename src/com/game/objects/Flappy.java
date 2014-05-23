@@ -3,48 +3,48 @@ package com.game.objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-
-import javax.imageio.ImageIO;
+import java.util.ArrayList;
 
 import com.game.graphics.Sprite;
 import com.game.system.CollisionDetection;
 import com.game.system.Controls;
-import com.game.system.Game;
+import com.game.system.TimeKeeper;
 
 public class Flappy extends RunnableObject{
 	private static final long serialVersionUID = 1L;
 	private int playerSpeed = 5;
+	private int currentImage = 0;
+	private boolean imageBack = false;
+	private boolean facingLeft = false;
+	private double lastTime = 0;
 
-	BufferedImage img;
-	Sprite sprite;
+	ArrayList<BufferedImage> img;
 	
-	public Flappy(){
+	public Flappy(ArrayList<BufferedImage> player){
 		CollisionDetection.addCollidable(this);
 		x = 50;
 		y = 50;
-		width = 50;
-		height = 50;
-		try {
-			img =  ImageIO.read(new File("res/Player1.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		width = 100;
+		height = 100;
+		img = player;
 	}
 	
 
 	public void update() {
-		System.out.println(CollisionDetection.detectCollision(this));
 		//Player Controls
 		if(Controls.left){
+			if(!facingLeft){
+				facingLeft = true;
+				img = Sprite.flipImage(img);
+			}
 			x-=playerSpeed;
 		}
 		else if(Controls.right){
+			if(facingLeft){
+				facingLeft = false;
+				img = Sprite.flipImage(img);
+			}
 			x+=playerSpeed;
 		}
 		if(Controls.up){
@@ -53,6 +53,7 @@ public class Flappy extends RunnableObject{
 		else if(Controls.down && !CollisionDetection.detectCollision(this)){
 			y+=playerSpeed;
 		}
+		incrementSprite();
 		if(Controls.jump){
 			
 		}
@@ -69,7 +70,6 @@ public class Flappy extends RunnableObject{
 		else if(x >= 800){
 			x = -height;
 		}
-
 		//System.out.println("Left: " + Controls.left + " Right: " + Controls.right + " Down: " + Controls.down + " Up: " + Controls.up + " Jump: " + Controls.jump);
 
 	}
@@ -78,8 +78,34 @@ public class Flappy extends RunnableObject{
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.YELLOW);
 		//g2d.fillRoundRect((int)x, (int)y, (int)width, (int)height, 20, 20);
-		g2d.drawImage(img, (int)x, (int)y, (int)width, (int)height,null);
+		g2d.drawImage(img.get(currentImage), (int)x, (int)y, (int)width, (int)height,null);
 		
+	}
+	
+	public void incrementSprite(){
+		if(Controls.left || Controls.right){
+			if(TimeKeeper.getTime() - lastTime > 0.04){
+				lastTime = TimeKeeper.getTime();
+				if(currentImage < 8 && !imageBack){
+					currentImage++;
+				}
+				else if(currentImage >=8){
+					imageBack = true;
+					currentImage--;
+				}
+				else{
+					currentImage--;
+					if(currentImage <= 6){
+						imageBack = false;
+						currentImage = 0;
+					}
+				}
+	
+			}
+		}
+		else{
+			currentImage = 0;
+		}
 	}
 
 }
