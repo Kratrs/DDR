@@ -18,6 +18,11 @@ public class Flappy extends RunnableObject{
 	private boolean imageBack = false;
 	private boolean facingLeft = false;
 	private double lastTime = 0;
+	
+	private double gravity = 1;
+	private boolean isFalling = true;
+	private boolean isJumping = false;
+	private int velY = 0;
 
 	ArrayList<BufferedImage> img;
 	
@@ -32,6 +37,14 @@ public class Flappy extends RunnableObject{
 	
 
 	public void update() {
+		
+		 y +=velY;
+		 if(isFalling || isJumping)
+		 {
+		  velY += gravity;
+		 }
+		 System.out.println(CollisionDetection.detectCollision(this));
+		 
 		//Player Controls
 		if(Controls.left){
 			if(!facingLeft){
@@ -47,16 +60,18 @@ public class Flappy extends RunnableObject{
 			}
 			x+=playerSpeed;
 		}
-		if(Controls.up){
-			y-=playerSpeed;
+		if(CollisionDetection.detectCollision(this))
+		{
+		  isFalling = false;
+		  isJumping = false;
+		  velY=0;
+		  y = this.y - 5;
 		}
-		else if(Controls.down && !CollisionDetection.detectCollision(this)){
-			y+=playerSpeed;
+		if(Controls.jump && !isJumping){
+			velY-=playerSpeed*3;
+			isJumping = true;
 		}
 		incrementSprite();
-		if(Controls.jump){
-			
-		}
 		//Screen wrapping
 		if(y + height <= 0){
 			y = 500;
