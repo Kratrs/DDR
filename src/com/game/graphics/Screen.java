@@ -36,6 +36,7 @@ public class Screen extends Canvas{
 		Graphics2D g2d = (Graphics2D)bufferStrategy.getDrawGraphics();
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0,0,getWidth(),getHeight());
+		g2d.drawImage(Sprite.background, 0, 0, getWidth(), getHeight(), null);
 		RunnableObject.renderObjects(g2d);
 		g2d.dispose();
 		bufferStrategy.show();

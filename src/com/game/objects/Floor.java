@@ -12,17 +12,17 @@ public class Floor extends RunnableObject{
 	public Floor() {
 		super();
 		CollisionDetection.addCollidable(this);
-		x = 5;
-		y = 400;
-		width = 800;
-		height = 40;
+		x = -100;
+		y = 390;
+		width = 1000;
+		height = 20;
 
 	}
 
 	public void drawObject(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.BLUE);
-		g2d.drawRect((int) x, (int) y, (int)width, (int)height);
+		//g2d.drawRect((int) x, (int) y, (int)width, (int)height);
 	
 	}
 
