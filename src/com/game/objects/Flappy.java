@@ -95,11 +95,11 @@ public class Flappy extends RunnableObject{
 		Graphics2D g2d = (Graphics2D)g;
 		//g2d.fillRoundRect((int)x, (int)y, (int)width, (int)height, 50, 50);
 		g2d.drawImage(img.get(currentImage), (int)x, (int)y, (int)width, (int)height,null);
-		g2d.setColor(Color.red);
-		g2d.draw(getLowBounds());
-		g2d.draw(getTopBounds());
-		g2d.draw(getLeftBounds());
-		g2d.draw(getRightBounds());
+		//g2d.setColor(Color.red);
+		//g2d.draw(getLowBounds());
+		//g2d.draw(getTopBounds());
+		//g2d.draw(getLeftBounds());
+		//g2d.draw(getRightBounds());
 	}
 	
 	public void incrementSprite(){
