@@ -22,7 +22,7 @@ public class Floor extends RunnableObject{
 	public void drawObject(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.BLUE);
-		//g2d.drawRect((int) x, (int) y, (int)width, (int)height);
+		g2d.drawRect((int) x, (int) y, (int)width, (int)height);
 	
 	}
 

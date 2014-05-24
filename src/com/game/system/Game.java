@@ -22,12 +22,18 @@ public class Game implements Runnable{
 	Controls controls = new Controls();
 	Flappy flappy = new Flappy(Sprite.player);
 	Floor floor = new Floor();
+	//Create a Camera 
+	Camera cam = new Camera(0,0);
 	
 	public void run() {
 		screen.addKeyListener(controls);
 	    currentUpdateTime = System.nanoTime();
 	    
 		while(running){
+			if(Controls.quit)
+			{
+				System.exit(1);
+			}
 			//System.out.println(TimeKeeper.systemTime + "   " + TimeKeeper.currentTime);
 			beginLoopTime = System.nanoTime();
 			RunnableObject.emptyQueue();
@@ -36,7 +42,10 @@ public class Game implements Runnable{
 			controls.update();
 			RunnableObject.updateObjects();
 			TimeKeeper.updateTime();
+			//added Camera 
+			cam.update(flappy);
 			screen.render();
+			
 			endLoopTime = System.nanoTime();
 			
 			deltaLoop = endLoopTime - beginLoopTime;

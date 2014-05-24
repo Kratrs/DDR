@@ -22,7 +22,9 @@ public class Flappy extends RunnableObject{
 	private double gravity = 1;
 	private boolean isFalling = true;
 	private boolean isJumping = false;
+	private boolean isStanding = false;
 	private int velY = 0;
+	private int drop = 1;
 
 	ArrayList<BufferedImage> img;
 	
@@ -39,9 +41,10 @@ public class Flappy extends RunnableObject{
 	public void update() {
 		
 		 y +=velY;
-		 if(isFalling || isJumping)
+		 if((isFalling || isJumping))
 		 {
-		  velY += gravity;
+			 if(isStanding==false)
+				 velY += gravity;
 		 }
 		 System.out.println(CollisionDetection.detectCollision(this));
 		 
@@ -64,12 +67,18 @@ public class Flappy extends RunnableObject{
 		{
 		  isFalling = false;
 		  isJumping = false;
+		  isStanding = true;
 		  velY=0;
 		  y = this.y - 5;
+		}
+		else
+		{
+			isStanding = false;
 		}
 		if(Controls.jump && !isJumping){
 			velY-=playerSpeed*3;
 			isJumping = true;
+			 isStanding = false;
 		}
 		incrementSprite();
 		//Screen wrapping
@@ -79,12 +88,12 @@ public class Flappy extends RunnableObject{
 		else if(y >= 500){
 			y = -width;
 		}
-		if(x + width <= 0){
-			x = 800;
-		}
-		else if(x >= 800){
-			x = -height;
-		}
+		//if(x + width <= 0){
+			//x = 800;
+		//}
+		//else if(x >= 800){
+		//	x = -height;
+		//}
 		//System.out.println("Left: " + Controls.left + " Right: " + Controls.right + " Down: " + Controls.down + " Up: " + Controls.up + " Jump: " + Controls.jump);
 
 	}
@@ -92,7 +101,7 @@ public class Flappy extends RunnableObject{
 	public void drawObject(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.YELLOW);
-		//g2d.fillRoundRect((int)x, (int)y, (int)width, (int)height, 20, 20);
+		g2d.fillRoundRect((int)x, (int)y, (int)width, (int)height, 20, 20);
 		g2d.drawImage(img.get(currentImage), (int)x, (int)y, (int)width, (int)height,null);
 		
 	}

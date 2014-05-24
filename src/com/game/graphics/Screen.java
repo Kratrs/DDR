@@ -4,9 +4,11 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
+
 import javax.swing.JFrame;
 
 import com.game.objects.RunnableObject;
+import com.game.system.Camera;
 
 
 public class Screen extends Canvas{
@@ -21,6 +23,7 @@ public class Screen extends Canvas{
 		frame.add(this);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.requestFocus();
 		frame.pack();
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -36,10 +39,12 @@ public class Screen extends Canvas{
 		Graphics2D g2d = (Graphics2D)bufferStrategy.getDrawGraphics();
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0,0,getWidth(),getHeight());
-		g2d.drawImage(Sprite.background, 0, 0, getWidth(), getHeight(), null);
+		g2d.translate(Camera.getX(), Camera.getY());//begin of cam
+		g2d.drawImage(Sprite.background, -getWidth(), 0, getWidth()*2, getHeight(), null);
 		RunnableObject.renderObjects(g2d);
 		g2d.dispose();
 		bufferStrategy.show();
+
 	}
 	
 }
