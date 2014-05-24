@@ -40,7 +40,7 @@ public class Screen extends Canvas{
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0,0,getWidth(),getHeight());
 		g2d.translate(Camera.getX(), Camera.getY());//begin of cam
-		g2d.drawImage(Sprite.test, -Sprite.test.getWidth()/2, 0, Sprite.test.getWidth()*2, Sprite.test.getHeight(), null);
+		g2d.drawImage(Sprite.test2, -Sprite.test2.getWidth()/2, 0, Sprite.test2.getWidth()*2, 500, null);
 		RunnableObject.renderObjects(g2d);
 		g2d.dispose();
 		bufferStrategy.show();

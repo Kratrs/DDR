@@ -16,12 +16,14 @@ public class Sprite {
 	public static BufferedImage playerSheet;
 	public static BufferedImage background;
 	public static BufferedImage test;
+	public static BufferedImage test2;
 	
 	public void load(){
 		playerSheet = loadSprite("res/PlayerAdjusted2.png");
 		player = createSprite(playerSheet, 9, (playerSheet.getWidth()/9), playerSheet.getHeight()-1);
 		background = loadSprite("res/ocean.png");
 		test = loadSprite("res/test.png");
+		test2 = loadSprite("res/test2.png");
 	}
 		
 	public BufferedImage loadSprite(String path){
