@@ -22,6 +22,8 @@ public class Game implements Runnable{
 	Controls controls = new Controls();
 	Flappy flappy = new Flappy(Sprite.player);
 	Floor floor = new Floor();
+	Floor floor2 = new Floor(200,100,200,100);
+	Floor floor3 = new Floor(0,200,50,200);
 	//Create a Camera 
 	Camera cam = new Camera(0,0);
 	

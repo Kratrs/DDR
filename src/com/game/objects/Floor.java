@@ -18,6 +18,14 @@ public class Floor extends RunnableObject{
 		height = 20;
 
 	}
+	public Floor(int x, int y, int width, int height){
+		super();
+		CollisionDetection.addCollidable(this);
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
 
 	public void drawObject(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;

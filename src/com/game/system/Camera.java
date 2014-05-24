@@ -1,6 +1,5 @@
 package com.game.system;
 
-import com.game.graphics.Screen;
 import com.game.objects.Flappy;
 
 public class Camera {

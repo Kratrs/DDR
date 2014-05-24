@@ -1,6 +1,5 @@
 package com.game.objects;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -19,10 +18,10 @@ public class Flappy extends RunnableObject{
 	private boolean facingLeft = false;
 	private double lastTime = 0;
 	
-	private double gravity = 1;
+	private int gravity = 1;
+	private int maxGravity = 60;
 	private boolean isFalling = true;
 	private boolean isJumping = false;
-	private boolean isGrounded = false;
 	private double velY = 0;
 
 	ArrayList<BufferedImage> img;
@@ -37,10 +36,35 @@ public class Flappy extends RunnableObject{
 	}
 	
 
-	public void update() {
-
-		 System.out.println(CollisionDetection.detectCollision(this));
-		 
+	public void update() {		 
+		//Falling
+		if(CollisionDetection.detectCollision(this))
+		{
+		  isFalling = false;
+		  isJumping = false;
+		  velY=0;
+		  y = CollisionDetection.getTopBot(this);
+		  x = CollisionDetection.getLeftRight(this);
+		}
+		else{
+			isFalling = true;
+		}
+		if((isFalling || isJumping))
+		{
+			if(velY <= maxGravity){
+				velY += gravity;
+			}
+		}
+		y +=velY;
+		incrementSprite();
+		//Screen wrapping
+		if(y + height <= 0){
+			y = 500;
+		}
+		else if(y >= 500){
+			y = -width;
+		}
+		
 		//Player Controls
 		if(Controls.left){
 			if(!facingLeft){
@@ -60,36 +84,11 @@ public class Flappy extends RunnableObject{
 			velY-=playerSpeed*3;
 			isJumping = true;
 		}
-		//Falling
-		if(CollisionDetection.detectCollision(this))
-		{
-		  isFalling = false;
-		  isJumping = false;
-		  velY=0.1;
-		  y -= 1;
-		}
-		else{
-			isFalling = true;
-		}
-		if((isFalling || isJumping))
-		{
-			velY += gravity;
-		}
-		y +=velY;
-		incrementSprite();
-		//Screen wrapping
-		if(y + height <= 0){
-			y = 500;
-		}
-		else if(y >= 500){
-			y = -width;
-		}
 	}
 
 	public void drawObject(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.setColor(Color.YELLOW);
-		g2d.fillRoundRect((int)x, (int)y, (int)width, (int)height, 20, 20);
+		g2d.fillRoundRect((int)x, (int)y, (int)width, (int)height, 50, 50);
 		g2d.drawImage(img.get(currentImage), (int)x, (int)y, (int)width, (int)height,null);
 		
 	}
