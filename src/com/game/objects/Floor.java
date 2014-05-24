@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import com.game.graphics.Sprite;
 import com.game.system.CollisionDetection;
 
 public class Floor extends RunnableObject{
@@ -30,7 +31,7 @@ public class Floor extends RunnableObject{
 	public void drawObject(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(Color.BLUE);
-		g2d.drawRect((int) x, (int) y, (int)width, (int)height);
+		g2d.drawImage(Sprite.bricks,(int) x, (int) y, (int)width, (int)height, null);
 	
 	}
 

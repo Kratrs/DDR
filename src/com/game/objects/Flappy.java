@@ -78,7 +78,7 @@ public class Flappy extends RunnableObject{
 			x = CollisionDetection.getRight(this);
 		}
 		if(Controls.jump && !isJumping){
-			velY-=playerSpeed*3;
+			velY-=playerSpeed*4;
 			isJumping = true;
 		}
 		y = CollisionDetection.getTop(this);
