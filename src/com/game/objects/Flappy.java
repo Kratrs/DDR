@@ -1,7 +1,9 @@
 package com.game.objects;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -36,15 +38,15 @@ public class Flappy extends RunnableObject{
 	}
 	
 
-	public void update() {		 
+	public void update() {	
+		System.out.println(CollisionDetection.checkBot(this));
 		//Falling
-		if(CollisionDetection.detectCollision(this))
+		if(CollisionDetection.checkBot(this))
 		{
 		  isFalling = false;
 		  isJumping = false;
 		  velY=0;
-		  y = CollisionDetection.getTopBot(this);
-		  x = CollisionDetection.getLeftRight(this);
+		  y = CollisionDetection.getBot(this);
 		}
 		else{
 			isFalling = true;
@@ -72,6 +74,7 @@ public class Flappy extends RunnableObject{
 				img = Sprite.flipImage(img);
 			}
 			x-=playerSpeed;
+			x = CollisionDetection.getLeft(this);
 		}
 		else if(Controls.right){
 			if(facingLeft){
@@ -79,18 +82,24 @@ public class Flappy extends RunnableObject{
 				img = Sprite.flipImage(img);
 			}
 			x+=playerSpeed;
+			x = CollisionDetection.getRight(this);
 		}
 		if(Controls.jump && !isJumping){
 			velY-=playerSpeed*3;
 			isJumping = true;
 		}
+		y = CollisionDetection.getTop(this);
 	}
 
 	public void drawObject(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
-		g2d.fillRoundRect((int)x, (int)y, (int)width, (int)height, 50, 50);
+		//g2d.fillRoundRect((int)x, (int)y, (int)width, (int)height, 50, 50);
 		g2d.drawImage(img.get(currentImage), (int)x, (int)y, (int)width, (int)height,null);
-		
+		g2d.setColor(Color.red);
+		g2d.draw(getLowBounds());
+		g2d.draw(getTopBounds());
+		g2d.draw(getLeftBounds());
+		g2d.draw(getRightBounds());
 	}
 	
 	public void incrementSprite(){
@@ -118,5 +127,16 @@ public class Flappy extends RunnableObject{
 			currentImage = 0;
 		}
 	}
-
+	public Rectangle getLowBounds(){
+		return new Rectangle((int)x + 35, (int)y + 88, (int)width/3, (int)height/8);
+	}
+	public Rectangle getTopBounds(){
+		return new Rectangle((int)x + 35, (int)y, (int)width/3, (int)height/8);
+	}
+	public Rectangle getLeftBounds(){
+		return new Rectangle((int)x + 20, (int)y+5, (int)width/8, (int)height- 12);	
+	}
+	public Rectangle getRightBounds(){
+		return new Rectangle((int)x + 70, (int)y+5, (int)width/8, (int)height- 12);	
+	}
 }

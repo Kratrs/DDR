@@ -24,6 +24,7 @@ public class Game implements Runnable{
 	Floor floor = new Floor();
 	Floor floor2 = new Floor(200,100,200,100);
 	Floor floor3 = new Floor(0,200,50,200);
+	Floor floor4 = new Floor(300,300,150,100);
 	//Create a Camera 
 	Camera cam = new Camera(0,0);
 	
