@@ -59,13 +59,6 @@ public class Flappy extends RunnableObject{
 		}
 		y +=velY;
 		incrementSprite();
-		//Screen wrapping
-		if(y + height <= 0){
-			y = 500;
-		}
-		else if(y >= 500){
-			y = -width;
-		}
 		
 		//Player Controls
 		if(Controls.left){

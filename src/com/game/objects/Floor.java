@@ -14,7 +14,7 @@ public class Floor extends RunnableObject{
 		CollisionDetection.addCollidable(this);
 		x = -100;
 		y = 390;
-		width = 1000;
+		width = 4000;
 		height = 20;
 
 	}

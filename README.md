@@ -2,7 +2,7 @@ This is the Development Branch.
 
 
 Todo list:
--- Sound -- Platforms -- Camera(Done. May be improved upon in future) -- Enemies -- User Interface/HUD -- Background -- IMPROVE collision detection(In progress)
+-- Sound -- Platforms -- Camera(Done. May be improved upon in future) -- Enemies -- User Interface/HUD -- Background -- IMPROVE collision detection(Complete)
 
 
 ChangeLog:
