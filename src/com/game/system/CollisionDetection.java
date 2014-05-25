@@ -35,6 +35,7 @@ public class CollisionDetection {
 		for (RunnableObject o : collidables) {
 			if (o != r) {
 				if (((Flappy) r).getTopBounds().intersects(o)) {
+					((Flappy) r).setvelY(0);
 					return o.y + r.height;
 				}
 			}

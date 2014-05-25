@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import com.game.graphics.Sprite;
+import com.game.system.Camera;
 import com.game.system.CollisionDetection;
 import com.game.system.Controls;
 import com.game.system.TimeKeeper;
@@ -119,6 +120,14 @@ public class Flappy extends RunnableObject{
 		else{
 			currentImage = 0;
 		}
+	}
+	public double setvelY(){
+		return velY;
+	}
+	
+
+	public void setvelY(double velY) {
+		this.velY = velY;
 	}
 	public Rectangle getLowBounds(){
 		return new Rectangle((int)x + 35, (int)y + 88, (int)width/3, (int)height/8);
