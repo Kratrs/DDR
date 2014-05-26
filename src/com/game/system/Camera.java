@@ -13,7 +13,9 @@ public class Camera {
 
 	public void update(Flappy flappy){
 		x = (float) (-flappy.getX() + 380);
-		
+		if(flappy.y < 180){
+			y = (float) (-flappy.getY() + 180);
+		}		
 	}
 	
 	public static float getX() {

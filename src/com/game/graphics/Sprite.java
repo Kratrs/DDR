@@ -18,6 +18,8 @@ public class Sprite {
 	public static BufferedImage test;
 	public static BufferedImage test2;
 	public static BufferedImage bricks;
+	public static BufferedImage metalTexture;
+	public static BufferedImage tronTexture;
 	
 	public void load(){
 		playerSheet = loadSprite("res/PlayerAdjusted2.png");
@@ -26,6 +28,8 @@ public class Sprite {
 		test = loadSprite("res/test.png");
 		test2 = loadSprite("res/test2.png");
 		bricks = loadSprite("res/bricks.png");
+		metalTexture = loadSprite("res/metalTexture.jpg");
+		tronTexture = loadSprite("res/tron.jpg");
 	}
 		
 	public BufferedImage loadSprite(String path){

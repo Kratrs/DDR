@@ -40,7 +40,6 @@ public class Flappy extends RunnableObject{
 	
 
 	public void update() {	
-		System.out.println(CollisionDetection.checkBot(this));
 		//Falling
 		if(CollisionDetection.checkBot(this))
 		{
