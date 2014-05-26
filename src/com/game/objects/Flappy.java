@@ -31,7 +31,7 @@ public class Flappy extends RunnableObject{
 	
 	public Flappy(ArrayList<BufferedImage> player){
 		CollisionDetection.addCollidable(this);
-		x = 50;
+		x = 200;
 		y = 50;
 		width = 100;
 		height = 100;
@@ -96,7 +96,7 @@ public class Flappy extends RunnableObject{
 	}
 	
 	public void incrementSprite(){
-		if(Controls.left || Controls.right){
+		if((Controls.left || Controls.right) && !isJumping){
 			if(TimeKeeper.getTime() - lastTime > 0.04){
 				lastTime = TimeKeeper.getTime();
 				if(currentImage < 8 && !imageBack){

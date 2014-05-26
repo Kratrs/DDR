@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import com.game.objects.RunnableObject;
 import com.game.system.Camera;
 import com.game.system.Game;
+import com.game.system.LevelManager;
+import com.game.system.TileMap;
 
 
 public class Screen extends Canvas{
@@ -43,6 +45,7 @@ public class Screen extends Canvas{
 		g2d.fillRect(0,0,getWidth(),getHeight());
 		g2d.translate(Camera.getX(), Camera.getY());//begin of cam
 		//g2d.drawImage(Sprite.test2, -Sprite.test2.getWidth()/2, 0, Sprite.test2.getWidth()*2, getHeight(), null);
+		LevelManager.render(g2d);
 		RunnableObject.renderObjects(g2d);
 		g2d.setColor(Color.GREEN);
 		g2d.drawString("FPS: " + Game.frames, 0 - Camera.getX(), 10 - Camera.getY());

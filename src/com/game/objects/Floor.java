@@ -11,7 +11,7 @@ import com.game.system.CollisionDetection;
 
 public class Floor extends RunnableObject{
 	
-	Tile floorTile = new Tile(Sprite.bricks, 50, 50);
+	Tile floorTile = new Tile(Sprite.bricks, 100, 100);
 	int tileCountX;
 	int tileCountY;
 	
@@ -39,23 +39,18 @@ public class Floor extends RunnableObject{
 		this.y = y;
 		this.width = width;
 		this.height = height;
-		tileCountX = (int) width/floorTile.getWidth();
-		if(tileCountX < 1){
-			tileCountX = 1;
-		}
-		tileCountY = (int)height/floorTile.getHeight();
-		if(tileCountY < 1){
-			tileCountY = 1;
-		}
 	}
 
 	public void drawObject(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
+		g2d.setColor(Color.GREEN);
+		g2d.drawRect((int)x, (int)y, (int)width, (int)height);
+		/*Graphics2D g2d = (Graphics2D)g;
 		for(int i = 0; i < tileCountY; i++){
 			for(int k = 0; k < tileCountX; k++){
 				g2d.drawImage(floorTile.getImage(),floorTile.getWidth() *k + (int)x, floorTile.getHeight() * i + (int)y, floorTile.getWidth(), floorTile.getHeight(), null);
 			}
-		}
+		}*/
 	}
 	
 	public void update() {

@@ -3,9 +3,12 @@ This is the Development Branch.
 
 Todo list:
 -- Sound -- Platforms -- Camera(Done. May be improved upon in future) -- Enemies/AI -- User Interface/HUD -- Background -- IMPROVE collision detection(Complete)
---OPTIMIZATION. Game is supposed to run at 60 FPS. But when first loading will drop to ~47. This may occur at other instances as well.
+--OPTIMIZATION. Game is supposed to run at 60 FPS. But when first loading will drop to ~47. This may occur at other instances as well.\
 
-ChangeLog - 5/25/15:
+ChangeLog - 5/26/14:
+Map builder now available! There should be a textfile called tileMap in the res folder. When we have more levels we will add more textfiles in there.
+
+ChangeLog - 5/25/14:
 FPS now shows in the top left hand corner. Camera class now follows in the Y direction as well. Several test images were added in the res folder and also coded
 	into the sprite class.
 Background was changed from beach to one of the textures in the sprite class.

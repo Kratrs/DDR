@@ -24,13 +24,13 @@ public class Game implements Runnable{
 	public static Boolean running = true;
 	
 	Screen screen = new Screen(800,500);
-	Background bg = new Background(-500,-500,4000,1200);
+	//Background bg = new Background(-500,-500,4000,1200);
 	Controls controls = new Controls();
 	Flappy flappy = new Flappy(Sprite.player);
-	Floor floor = new Floor();
-	Floor floor2 = new Floor(200,150,200,100);
-	Floor floor3 = new Floor(0,270,50,200);
-	Floor floor4 = new Floor(300,370,150,100);
+	//Floor floor = new Floor();
+	//Floor floor2 = new Floor(200,150,200,100);
+	//Floor floor3 = new Floor(0,270,50,200);
+	//Floor floor4 = new Floor(300,370,150,100);
 	//Create a Camera 
 	Camera cam = new Camera(0,0);
 	
@@ -51,13 +51,9 @@ public class Game implements Runnable{
 			RunnableObject.emptyQueue();
 			lastUpdateTime = currentUpdateTime;
 			currentUpdateTime = System.nanoTime();
-			controls.update();
-			RunnableObject.updateObjects();
-			TimeKeeper.updateTime();
-			//added Camera 
-			cam.update(flappy);
-			screen.render();
+			update();
 			updates++;
+			render();
 			endLoopTime = System.nanoTime();
 
 			deltaLoop = endLoopTime - beginLoopTime;
@@ -78,6 +74,19 @@ public class Game implements Runnable{
 				updates = 0;
 			}
 		}		
+	}
+	
+	public void update(){
+		System.out.println(CollisionDetection.collidables.size());
+		LevelManager.update();
+		controls.update();
+		RunnableObject.updateObjects();
+		TimeKeeper.updateTime();
+		cam.update(flappy);
+	}
+	
+	public void render(){
+		screen.render();
 	}
 
 }

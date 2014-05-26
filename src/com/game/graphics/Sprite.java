@@ -33,7 +33,6 @@ public class Sprite {
 	}
 		
 	public BufferedImage loadSprite(String path){
-		System.out.println("Hello");
 		try {
 			return ImageIO.read(new File(path));
 		} catch (IOException e) {
